@@ -17,11 +17,13 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     // For different networks, we'll have different addresses for Price Feeds
     // Using an approach which Aave uses - a helper config file
     let ethUsdPriceFeedAddress
+    
     if (developmentChains.includes(network.name)) {
         const ethUsdAggregator = await deployments.get("MockV3Aggregator")
         // get the mock contract object from a previous deployment
         ethUsdPriceFeedAddress = ethUsdAggregator.address
         // get the address of that mock contract object
+        // your deployed mock contract acts as the ethUsd priceFeed
     } else {
         ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
     }

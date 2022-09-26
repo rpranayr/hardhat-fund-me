@@ -2,6 +2,8 @@
 pragma solidity ^0.8.8;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+// defines the external functions implement by data feed contracts 
+
 // Importing Chainlink's Interface
 import "./PriceConvertor.sol";
 // Importing library
@@ -81,7 +83,7 @@ receive() exists?  fallback()
      */
     function fund() public payable {
         // no need to give a parameter even though function definition says we
-        // we need one because (*ALWAYS ALWAYS*) the first parameter passed is the object it is
+        // we need one because always the first parameter passed is the object it is
         // called on.
         require(
             msg.value.getConversionRate(s_priceFeed) > MINIMUM_USD,
